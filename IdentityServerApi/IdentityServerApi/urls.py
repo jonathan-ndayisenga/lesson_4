@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
+from django.urls import include, path
+from identityServerApp import views  # Import views from a different directory
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('IdentityServerApi/', include('IdentityServerApi.urls')),  # Replace 'yourappname' with your actual app name
+
+    path('signup/', views.signup, name='signup'), 
+    path('login/', views.login_view, name='login'),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('reset-password/', views.reset_password, name='reset_password'),
+    path('roles/', views.roles, name='roles'),
+    # Add other URL patterns as needed
 ]
